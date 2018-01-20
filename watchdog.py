@@ -24,6 +24,7 @@ for miner_name, miner in config["miners"].items():
 
 while True:
     for miner_name, miner in config["miners"].items():
+        print("Checking {}...".format(miner_name))
         api_responded = False
         fail = False
 
