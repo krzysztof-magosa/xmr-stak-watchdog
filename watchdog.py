@@ -55,6 +55,11 @@ while True:
 
         if fail:
             subprocess.call(miner["action"], shell=True)
+            print(
+                "Waiting {} seconds for miner to start...".format(
+                    int(miner["wait"])
+                )
+            )
             time.sleep(int(miner["wait"]))
 
     time.sleep(5)
