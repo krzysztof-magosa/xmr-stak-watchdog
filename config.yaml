@@ -1,0 +1,15 @@
+miners:
+  main:
+    connection:
+      url: http://localhost:3333/api.json
+    thresholds:
+      hashrate:
+        value: 3500
+        period: 60s  # one of 10s, 60s, 15m
+      connect:
+        timeout: 5
+        retries: 3
+    action:
+      - "start"
+      - "C:/Users/km/Desktop/GPU - max"
+    wait: 120
