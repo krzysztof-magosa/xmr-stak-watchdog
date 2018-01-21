@@ -42,14 +42,22 @@ while True:
                 pass
 
         if api_responded:
-            index = HASHRATE_PERIODS.index(
-                miner["thresholds"]["hashrate"]["period"]
-            )
-            hashrate = int(
-                api_data["hashrate"]["total"][index]
-            )
+            try:
+                index = HASHRATE_PERIODS.index(
+                    miner["thresholds"]["hashrate"]["period"]
+                )
+                current_hashrate = int(
+                    api_data["hashrate"]["total"][index]
+                )
+                expected_hashrate = int(
+                    miner["thresholds"]["hashrate"]["value"]
+                )
 
-            if hashrate < miner["thresholds"]["hashrate"]["value"]:
+                if current_hashrate < expected_hashrate:
+                    fail = True
+
+            except TypeError:
+                # sometimes API responds with NULLs, usually when mining is broken
                 fail = True
         else:
             fail = True
